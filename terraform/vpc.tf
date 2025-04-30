@@ -54,3 +54,23 @@ resource "aws_eip" "this" {
       Name = "Sftp-eip-${count.index}"
     }
 }
+
+resource "aws_security_group" "sftp_sg" {
+    name = "sftp-sg"
+    description = "Allow SSH and SFTP"
+    vpc_id = aws_vpc.this.id
+}
+
+resource "aws_vpc_security_group_ingress_rule" "allow_ssh" {
+    security_group_id = aws_security_group.sftp_sg.id
+    cidr_ipv4 = "0.0.0.0/0"
+    ip_protocol = "tcp"
+    from_port = 22
+    to_port = 22
+}
+
+resource "aws_vpc_security_group_egress_rule" "allow_all" {
+    security_group_id = aws_security_group.sftp_sg.id
+    cidr_ipv4 = "0.0.0.0/0"
+    ip_protocol = "-1"
+}

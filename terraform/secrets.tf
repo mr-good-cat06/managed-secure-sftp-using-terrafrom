@@ -18,7 +18,6 @@ resource "aws_secretsmanager_secret_version" "this" {
     "role" : "${aws_role.sftp_role.arn}",
     "home_dir" : "/${local.bucket_name}"
     }
-
     EOF
 
 }
