@@ -48,13 +48,9 @@ resource "aws_route_table_association" "this" {
 }
 
 resource "aws_eip" "this" {
+    depends_on = [ aws_internet_gateway.igw ]
     count = length(var.az_list)
     tags = {
       Name = "Sftp-eip-${count.index}"
     }
-
-
-
-
-  
 }
