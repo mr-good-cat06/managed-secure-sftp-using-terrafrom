@@ -10,3 +10,8 @@ variable "az_list" {
   
 }
 
+variable "storage_bucket_name" {
+    type = string
+    default = "sftp-bucket-"
+  
+}

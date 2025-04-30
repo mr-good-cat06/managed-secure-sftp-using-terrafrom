@@ -4,8 +4,13 @@ resource "random_string" "bckt_name" {
     upper = false
 }
 
+locals {
+    bucket_name = "${var.storage_bucket_name}${random_string.bckt_name.result}"
+
+}
+
 resource "aws_s3_bucket" "this" {
-    bucket = random_string.bckt_name.result
+    bucket = local.bucket_name
 }
 
 resource "aws_s3_bucket_versioning" "this" {
