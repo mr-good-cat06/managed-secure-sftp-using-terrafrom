@@ -10,19 +10,19 @@ locals {
 
 data "archive_file" "lambda_auth_function" {
     type        = "zip"
-    source_dir = "${path.module}/functions/auth_lambda"
-    output_path = "${path.module}/functions/auth_lambda.zip"
+    source_dir = "${path.module}/../functions/auth_lambda"
+    output_path = "${path.module}/../functions/auth_lambda.zip"
 }
 
 #lambda function resource
 resource "aws_lambda_function" "sftp-lambda-auth" {
     filename = data.archive_file.lambda_auth_function.output_path
     function_name = local.auth_lambda_function_name
-    role = aws_iam_role.sftp_lambda_role.arn
+    role = aws_iam_role.lambda_auth_role.arn
     handler = "auth_lambda.handler"
     runtime = "python3.12"
     architectures = ["arm64"]
-    layers = ["arn:aws:lambda:us-east-1:017000801446:layer:AWSLambdaPowertoolsPythonV3-python38-arm64:4"]
+    layers = ["arn:aws:lambda:ap-northeast-1:017000801446:layer:AWSLambdaPowertoolsPythonV3-python38-arm64:4"]
     source_code_hash = data.archive_file.lambda_auth_function.output_base64sha256
   
     environment {

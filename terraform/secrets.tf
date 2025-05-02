@@ -15,7 +15,7 @@ resource "aws_secretsmanager_secret_version" "this" {
     secret_string = <<EOF
     {
     "password" : "${random_password.this.result}",
-    "role" : "${aws_role.sftp_role.arn}",
+    "role" : "${aws_iam_role.sftp_s3_role.arn}",
     "home_dir" : "/${local.bucket_name}"
     }
     EOF
