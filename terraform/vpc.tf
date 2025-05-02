@@ -74,3 +74,4 @@ resource "aws_vpc_security_group_egress_rule" "allow_all" {
     cidr_ipv4 = "0.0.0.0/0"
     ip_protocol = "-1"
 }
+
