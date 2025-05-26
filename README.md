@@ -41,8 +41,4 @@ Run the following terraform command to destroy all the infrastructure.
 terraform destroy (from the infra directory)
 ```
 
-### Read More
-
-This repository is associated with the following blog https://darryl-ruggles.cloud/managed-secure-sftp-using-terraform
-
 >>>>>>> 67917ab (initial)
