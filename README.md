@@ -1,5 +1,3 @@
-
-# sftp-s3
 # managed-secure-sftp-using-terrafrom
 
 
